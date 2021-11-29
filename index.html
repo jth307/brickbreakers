@@ -2,19 +2,92 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>2D Breakout Game - JavScript</title>
+    <title>BrickBreakers</title>
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Germania+One">
 
     <style>
         *{
             font-family: "Germania One";
         }
+        #sound{
+            width: 25px;
+            height : 25px;
+            cursor: pointer;
+            position: absolute;
+            top : 475px;
+            left : 22px;
+            z-index:2;
 
+        }
+        #pause{
+            width: 25px;
+            height : 25px;
+            cursor: pointer;
+            position: absolute;
+            top : 475px;
+            left : 375px;
+            z-index:2;
+
+        }
+        #gameover{
+            position: absolute;
+            width : 406px;
+            height: 506px;
+            background: rgba(0,0,0,0.5);
+            display: block;
+        }
+        #title{
+            width: auto;
+            position: absolute;
+            top : 155px;
+            left : 29px;
+            display: block;
+            height: 60px;
+        }
+        #youwon{
+            width: auto;
+            position: absolute;
+            top : 195px;
+            left : 85px;
+            display: none;
+            height: 50px;
+        }
+        #youlose{
+            width:300px;
+            position: absolute;
+            top: 180px;
+            left : 55px;
+            display: none;
+        }
+        #restart{
+            position: absolute;
+            top: 250px;
+            left : 165px;
+            cursor: pointer;
+            font-size: 1em;
+            color : rgb(243, 192, 209);
+            font-family: sans-serif;
+            cursor: pointer;
+            font-weight: 500;
+            display:none;
+        }
+        #start{
+            position: absolute;
+            top: 250px;
+            left : 165px;
+            cursor: pointer;
+            font-size: 1em;
+            color : rgb(243, 192, 209);
+            font-family: sans-serif;
+            cursor: pointer;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
     <div class="sound">
         <img src="img/SOUND_ON.png" alt="" id="sound">
+        <img src="img/pause.png" alt="" id="pause">
     </div>
 
     <div id="gameover">
@@ -25,8 +98,9 @@
         <div id="start">Start game</div>
     </div>
 
-    <canvas id="breakout" width="400" height="500"></canvas>
+    <canvas id="brickbreakers" width="400" height="500"></canvas>
 
     <script src="components.js"></script>
+    <script src="game.js"></script>
 </body>
 </html>
