@@ -214,6 +214,94 @@ function ballBrickCollision(){
     }
 }
 
+// show game stats
+function showGameStats(text, textX, textY, img, imgX, imgY){
+    // draw text
+    ctx.fillStyle = "#BA55D3";
+    ctx.font = "18px Germania One";
+    ctx.fillText(text, textX, textY);
+
+    // draw image
+    if (img)
+    {ctx.drawImage(img, imgX, imgY, width = 20, height = 20);}
+}
+
+// DRAW FUNCTION
+function draw(){
+    drawPaddle();
+
+    drawBall();
+
+    drawBricks();
+
+    // SHOW SCORE
+    showGameStats(SCORE, 38, 27, SCORE_IMG, 11, 9);
+    // SHOW LIVES
+    showGameStats(LIFE, cvs.width - 20, 27, LIFE_IMG, cvs.width-47, 10.5);
+    // SHOW LEVEL
+    showGameStats('Level '+LEVEL, cvs.width/2-30, 25, null, cvs.width/2 - 30, 5);
+}
+
+// game over
+function gameOver(){
+    if(LIFE <= 0){
+        showYouLose();
+        GAME_OVER = true;
+    }
+}
+
+// level up
+function levelUp(){
+
+    if((SCORE === 50 && !bricks[0][0].status) || (SCORE === 150 && !bricks[0][0].status) || (SCORE === 300 && !bricks[0][0].status)){
+        WIN.play();
+
+        if(LEVEL >= MAX_LEVEL){
+            showYouWin();
+            GAME_OVER = true;
+            return;
+        }
+        brick.row++;
+        createBricks();
+        ball.speed += 1;
+        ball.y -=1;
+        resetPositions();
+        LEVEL++;
+    }
+}
+
+// UPDATE GAME FUNCTION
+function update(){
+    movePaddle();
+
+    moveBall();
+
+    ballWallCollision();
+
+    ballPaddleCollision();
+
+    ballBrickCollision();
+
+    gameOver();
+
+    levelUp();
+}
+
+// GAME LOOP
+function loop(){
+    // CLEAR THE CANVAS
+    ctx.drawImage(BG_IMG, -650, -150);
+
+    draw();
+
+    update();
+
+    if(! GAME_OVER){
+        requestAnimationFrame(loop);
+    }
+}
+// loop();
+
 
 
 
